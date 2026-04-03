@@ -22,7 +22,7 @@ remotes::install_github("mah-iasri/cars")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example of how cars can be used:
 
 ``` r
 library(cars)
