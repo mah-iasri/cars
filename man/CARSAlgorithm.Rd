@@ -15,13 +15,15 @@ CARSAlgorithm(max_iter = 100, N = 50, cv_folds = 5, random_state = 42)
 
 \item{random_state}{Integer seed for reproducibility. Default \code{42}.}
 
-\item{X}{Numeric matrix of predictors
-(n_samples × n_features).}
+\item{X}{Numeric matrix of predictors (n_samples × n_features).}
 
 \item{y}{Numeric response vector of length n_samples.}
 
-\item{max_components}{Integer cap on the number of PLS latent components.
-Default \code{10}.}
+\item{max_components}{Integer cap on the number of PLS latent components Default \code{10}.}
+
+\item{save_plot}{Boolean value, whether to generate plot Default \code{True}}
+
+\item{plot_path}{Physical path to save the generated plot in local machine}
 }
 \value{
 A named list with one public element:
@@ -55,7 +57,7 @@ CARS iteratively:
 variable budget.
 }
 
-Fit the CARS algorithm to the high dimensional data \code{X} and response \code{y}.
+Fit the CARS object to the high dimensional data \code{X} and response \code{y}.
 }
 \examples{
 \dontrun{
@@ -66,7 +68,7 @@ y <- X[, 5] * 2 + X[, 50] * -1.5 + rnorm(100, sd = 0.5)
 
 # Instantiate and fit
 cars <- CARSAlgorithm(max_iter = 15, N = 30, cv_folds = 5, random_state = 42)
-result <- cars$fit(X, y, max_components = 8)
+result <- cars$fit(X, y, max_components = 8, plot=TRUE, plot_path='./cars_rmsecv_features.jpg')
 
 cat("Best RMSECV      :", result$best_rmsecv, "\n")
 cat("Selected features:", result$best_features, "\n")

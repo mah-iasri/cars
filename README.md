@@ -32,7 +32,7 @@ y <- X[, 5] * 2 + X[, 50] * -1.5 + rnorm(100, sd = 0.5)
 
 # Instantiate and fit
 cars <- CARSAlgorithm(max_iter = 15, N = 30, cv_folds = 5, random_state = 42)
-result <- cars$fit(X, y, max_components = 8)
+result <- cars$fit(X, y, max_components = 8, plot=TRUE, plot_path='./cars_rmsecv_features.jpg')
 
 cat("Best RMSECV      :", result$best_rmsecv, "\n")
 cat("Selected features:", result$best_features, "\n")

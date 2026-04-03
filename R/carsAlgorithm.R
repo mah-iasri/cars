@@ -42,7 +42,7 @@
 #'
 #' # Instantiate and fit
 #' cars <- CARSAlgorithm(max_iter = 15, N = 30, cv_folds = 5, random_state = 42)
-#' result <- cars$fit(X, y, max_components = 8)
+#' result <- cars$fit(X, y, max_components = 8, plot=TRUE, plot_path='./cars_rmsecv_features.jpg')
 #'
 #' cat("Best RMSECV      :", result$best_rmsecv, "\n")
 #' cat("Selected features:", result$best_features, "\n")
@@ -308,7 +308,7 @@ CARSAlgorithm <- function(max_iter     = 100,
       # Number of variables to keep this iteration (exponential schedule)
       n_select <- .exponential_decreasing_function(
         k      = iteration - 1L,   # 0-based index matches Python
-        N_feat = n_features
+        n_feat = n_features
       )
 
       if (n_select < 2L) {
@@ -372,14 +372,14 @@ CARSAlgorithm <- function(max_iter     = 100,
       ggplot2::labs(
         x     = "Number of variables",
         y     = "RMSECV",
-        title = paste0("Selected variables: ", length(best_wavelengths),
+        title = paste0("Selected variables: ", length(best_features),
                        "  (RMSECV: ", round(best_rmsecv, 4), ")")
       ) +
       ggplot2::theme_minimal()
 
     print(p)
 
-    if (save_plot) {
+    if (plot) {
       dir.create(dirname(plot_path), recursive = TRUE, showWarnings = FALSE)
       ggplot2::ggsave(filename = plot_path, plot = p, width = 10, height = 6, dpi = 300)
       message("Plot saved to: ", plot_path)

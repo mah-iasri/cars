@@ -15,6 +15,9 @@ Depends:
     R (>= 4.1.0)
 Imports:
     ggplot2,
-    pls
+    pls,
+    rlang,
+    stats,
+    utils
 URL: https://github.com/mah-iasri/cars
 BugReports: https://github.com/mah-iasri/cars/issues
