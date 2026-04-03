@@ -1,6 +1,6 @@
 Package: cars
 Title: Competitive Adaptive Reweighted Sampling (CARS) Algorithm for High Dimensional Dataset
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: c(
   person("Md. Ashraful", "Haque", email = "ashrafulhaque664@gmail.com" , role = c("aut", "cre")),
   person("Avijit", "Ghosh", email = "avijitghosh19892@gmail.com" , role = "aut"),
