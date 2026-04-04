@@ -15,9 +15,9 @@ You can install the development version of cars like so:
 install.packages(c("pls", "ggplot2", "stats"))
 
 # Install cars from local source
-install.packages("path/to/cars_0.1.0.tar.gz", repos = NULL, type = "source")
+install.packages("path/to/carsAlgo_0.5.0.tar.gz", repos = NULL, type = "source")
 or 
-remotes::install_github("mah-iasri/cars")
+remotes::install_github("mah-iasri/carsAlgo")
 ```
 
 ## Example
@@ -25,7 +25,7 @@ remotes::install_github("mah-iasri/cars")
 This is a basic example of how cars can be used:
 
 ``` r
-library(cars)
+library(carsAlgo)
 set.seed(1)
 X <- matrix(rnorm(100 * 200), nrow = 100)
 y <- X[, 5] * 2 + X[, 50] * -1.5 + rnorm(100, sd = 0.5)

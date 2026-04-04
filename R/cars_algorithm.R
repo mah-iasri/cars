@@ -42,7 +42,6 @@ CARSAlgorithm <- function(max_iter     = 100,
   )
 }
 
-
 #' Print method for CARSAlgorithm objects
 #' @param x A `CARSAlgorithm` object.
 #' @param ... Ignored.

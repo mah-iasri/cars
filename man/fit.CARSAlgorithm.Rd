@@ -10,7 +10,7 @@
   y,
   max_components = 10L,
   plot = TRUE,
-  plot_path = "../cars_rmsecv_curve.jpg",
+  plot_path = "../carsAlgo_rmsecv_curve.jpg",
   ...
 )
 }
@@ -25,7 +25,7 @@
 
 \item{plot}{Logical. Whether to display and save the RMSECV curve. Default \code{TRUE}.}
 
-\item{plot_path}{File path for saving the RMSECV plot. Default \code{"../cars_rmsecv_curve.jpg"}.}
+\item{plot_path}{File path for saving the RMSECV plot. Default \code{"../carsAlgo_rmsecv_curve.jpg"}.}
 
 \item{...}{Currently unused.}
 }

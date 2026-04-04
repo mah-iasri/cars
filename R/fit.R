@@ -10,7 +10,7 @@
 #' @param y              Numeric response vector of length n_samples.
 #' @param max_components Integer cap on PLS latent components. Default `10`.
 #' @param plot           Logical. Whether to display and save the RMSECV curve. Default `TRUE`.
-#' @param plot_path      File path for saving the RMSECV plot. Default `"../cars_rmsecv_curve.jpg"`.
+#' @param plot_path      File path for saving the RMSECV plot. Default `"../carsAlgo_rmsecv_curve.jpg"`.
 #' @param ...            Currently unused.
 #'
 #' @details
@@ -60,7 +60,7 @@ fit.CARSAlgorithm <- function(cars_obj,
                               y,
                               max_components = 10L,
                               plot           = TRUE,
-                              plot_path      = "../cars_rmsecv_curve.jpg",
+                              plot_path      = "../carsAlgo_rmsecv_curve.jpg",
                               ...) {
 
   # Unpack hyperparameters from the CARSAlgorithm object
