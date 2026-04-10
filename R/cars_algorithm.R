@@ -45,6 +45,7 @@ CARSAlgorithm <- function(max_iter     = 100,
 #' Print method for CARSAlgorithm objects
 #' @param x A `CARSAlgorithm` object.
 #' @param ... Ignored.
+#' @return No return value, called for side effects
 #' @export
 print.CARSAlgorithm <- function(x, ...) {
   cat("CARS Algorithm Configuration\n")

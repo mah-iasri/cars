@@ -4,15 +4,7 @@
 \alias{fit.CARSAlgorithm}
 \title{Fits a CARS Object to any high dimensional dataset}
 \usage{
-\method{fit}{CARSAlgorithm}(
-  cars_obj,
-  X,
-  y,
-  max_components = 10L,
-  plot = TRUE,
-  plot_path = "../carsAlgo_rmsecv_curve.jpg",
-  ...
-)
+\method{fit}{CARSAlgorithm}(cars_obj, X, y, max_components = 10L, plot = TRUE, plot_path = NULL, ...)
 }
 \arguments{
 \item{cars_obj}{A \code{CARSAlgorithm} object created by \code{\link{CARSAlgorithm}}.}
@@ -57,7 +49,7 @@ variable set.
 }
 }
 \examples{
-\dontrun{
+\donttest{
 set.seed(1)
 X <- matrix(rnorm(100 * 200), nrow = 100)
 y <- X[, 5] * 2 + X[, 50] * -1.5 + rnorm(100, sd = 0.5)

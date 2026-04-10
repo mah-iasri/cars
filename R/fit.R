@@ -35,7 +35,7 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' set.seed(1)
 #' X <- matrix(rnorm(100 * 200), nrow = 100)
 #' y <- X[, 5] * 2 + X[, 50] * -1.5 + rnorm(100, sd = 0.5)
@@ -60,7 +60,7 @@ fit.CARSAlgorithm <- function(cars_obj,
                               y,
                               max_components = 10L,
                               plot           = TRUE,
-                              plot_path      = "../carsAlgo_rmsecv_curve.jpg",
+                              plot_path      = NULL,
                               ...) {
 
   # Unpack hyperparameters from the CARSAlgorithm object
@@ -135,49 +135,54 @@ fit.CARSAlgorithm <- function(cars_obj,
   if (!is.null(best_features)) best_features <- sort(best_features)
 
   #### Generate plots
-  best_idx        <- which.min(rmsecv_history)
-  best_feature_pt <- num_features_history[best_idx]
-
-  plot_df <- data.frame(
-    num_features = num_features_history,
-    rmsecv       = rmsecv_history
-  )
-
-  # Best point as separate data frame — columns named to avoid
-  # clashing with function parameters x and y
-  best_pt_df <- data.frame(
-    pt_features = best_feature_pt,
-    pt_rmsecv   = best_rmsecv
-  )
-
-  p <- ggplot2::ggplot(
-    plot_df,
-    ggplot2::aes(x = .data$num_features, y = .data$rmsecv)   # .data$ fixes num_features and rmsecv
-  ) +
-    ggplot2::geom_line(color = "black", linewidth = 0.8) +
-    ggplot2::geom_point(color = "black", size = 2) +
-    ggplot2::geom_point(
-      data = best_pt_df,
-      ggplot2::aes(x = .data$pt_features, y = .data$pt_rmsecv), # .data$ fixes x
-      color      = "darkred",
-      shape      = 15,
-      size       = 3,
-      inherit.aes = FALSE
-    ) +
-    ggplot2::labs(
-      x     = "Number of variables",
-      y     = "RMSECV",
-      title = paste0("Selected variables: ", length(best_features),
-                     "  (RMSECV: ", round(best_rmsecv, 4), ")")
-    ) +
-    ggplot2::theme_minimal()
-
-  print(p)
-
   if (plot) {
-    dir.create(dirname(plot_path), recursive = TRUE, showWarnings = FALSE)
-    ggplot2::ggsave(filename = plot_path, plot = p, width = 10, height = 6, dpi = 300)
-    message("Plot saved to: ", plot_path)
+
+    best_idx        <- which.min(rmsecv_history)
+    best_feature_pt <- num_features_history[best_idx]
+
+    plot_df <- data.frame(
+      num_features = num_features_history,
+      rmsecv       = rmsecv_history
+    )
+
+    # Best point as separate data frame — columns named to avoid
+    # clashing with function parameters x and y
+    best_pt_df <- data.frame(
+      pt_features = best_feature_pt,
+      pt_rmsecv   = best_rmsecv
+    )
+
+    p <- ggplot2::ggplot(
+      plot_df,
+      ggplot2::aes(x = .data$num_features, y = .data$rmsecv)   # .data$ fixes num_features and rmsecv
+    ) +
+      ggplot2::geom_line(color = "black", linewidth = 0.8) +
+      ggplot2::geom_point(color = "black", size = 2) +
+      ggplot2::geom_point(
+        data = best_pt_df,
+        ggplot2::aes(x = .data$pt_features, y = .data$pt_rmsecv), # .data$ fixes x
+        color      = "darkred",
+        shape      = 15,
+        size       = 3,
+        inherit.aes = FALSE
+      ) +
+      ggplot2::labs(
+        x     = "Number of variables",
+        y     = "RMSECV",
+        title = paste0("Selected variables: ", length(best_features),
+                       "  (RMSECV: ", round(best_rmsecv, 4), ")")
+      ) +
+      ggplot2::theme_minimal()
+
+
+    if (!is.null(plot_path)){
+      dir.create(dirname(normalizePath(plot_path, mustWork = FALSE)),
+                 recursive = TRUE, showWarnings = FALSE)
+      #dir.create(dirname(plot_path), recursive = TRUE, showWarnings = FALSE)
+      ggplot2::ggsave(filename = plot_path, plot = p, width = 10, height = 6, dpi = 300)
+      message("Plot saved to: ", plot_path)
+    }
+    print(p)
   }
 
   list(
