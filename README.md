@@ -5,11 +5,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-> Competitive Adaptive Reweighted Sampling (CARS) Algorithm for variable selection in high dimensional dataset
+> Competitive Adaptive Reweighted Sampling (CARS) Algorithm
 
 ## Description
 
-The carsAlgo implements the Competitive Adaptive Reweighted Sampling (CARS) 
+The carsAlgo implements Competitive Adaptive Reweighted Sampling (CARS) 
     algorithm for variable selection from high-dimensional dataset using in Partial 
     Least Squares (PLS) regression models. CARS algorithm iteratively applies the 
     Monte Carlo sub-sampling and exponential variable elimination techniques to 
@@ -43,7 +43,8 @@ X <- matrix(rnorm(100 * 200), nrow = 100)
 y <- X[, 5] * 2 + X[, 50] * -1.5 + rnorm(100, sd = 0.5)
 
 cars_obj <- CARSAlgorithm(max_iter = 15, N = 30, cv_folds = 5)
-result   <- fit(cars_obj, X, y, max_components = 8)
+result   <- fit(cars_obj, X, y, max_components = 8,
+                plot_path = file.path(tempdir(), "cars_rmsecv_curve.jpg")))
 
 cat("Best RMSECV      :", result$best_rmsecv, "\n")
 cat("Selected features:", result$best_features, "\n")
