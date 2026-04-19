@@ -27,7 +27,7 @@ You can install the development version of cars like so:
 install.packages(c("pls", "ggplot2", "stats"))
 
 # Install cars from local source
-install.packages("path/to/carsAlgo_0.5.0.tar.gz", repos = NULL, type = "source")
+install.packages("carsAlgo")
 or 
 remotes::install_github("mah-iasri/carsAlgo")
 ```
@@ -57,7 +57,7 @@ competitive adaptive reweighted sampling method for multivariate calibration.
 *Analytica Chimica Acta*, 648(1), 77–84. <https://doi.org/10.1016/j.aca.2009.06.046>
 
 ## Citation
-
+> if you use this package please cite us as provided below:
 Haque, M.A., Ghosh, A., Karamakar, S., Sachan, H. and Kumari, S. (2026). carsAlgo. R Package. *CRAN*. Doi: 10.32614/CRAN.package.carsAlgo
 
 
